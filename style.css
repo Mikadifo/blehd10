@@ -5,9 +5,21 @@ html {
   font-family: "Courier New", Courier, monospace;
 }
 
+*:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
 body {
   background: #0c2c23;
   margin: 2rem;
+}
+
+#navbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
 }
 
 h1 {
@@ -76,11 +88,10 @@ form > #clear-btn {
   margin-left: 1rem;
 }
 
-#control-buttons {
-  display: flex;
-  gap: 2rem;
-  justify-content: center;
-  margin-top: 2rem;
+#control-buttons > button {
+  color: #e1eae3;
+  font-size: 18px;
+  padding: 8px 16px;
 }
 
 #connect-btn {
@@ -88,17 +99,6 @@ form > #clear-btn {
   color: #e1eae3;
 }
 
-#control-buttons > button {
-  color: #e1eae3;
-  font-size: 18px;
-  padding: 8px 16px;
-}
-
 #disconnect-btn {
   background: #7e0000;
-}
-
-*:disabled {
-  opacity: 0.5;
-  cursor: not-allowed;
 }

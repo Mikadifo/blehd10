@@ -7,7 +7,13 @@
     <title>BLE HM-10</title>
   </head>
   <body>
-    <h1>BLE HM-10 CONTROL PANEL</h1>
+    <div id="navbar">
+      <h1>BLE HM-10 CONTROL PANEL</h1>
+      <div id="control-buttons">
+        <button id="connect-btn">connect</button>
+        <button id="disconnect-btn" disabled>disconnect</button>
+      </div>
+    </div>
     <div id="log-container">
       <p class="log-info">Messages and logs will appear here</p>
     </div>
@@ -22,10 +28,6 @@
       <button id="send-btn">send</button>
       <button type="button" id="clear-btn">clear</button>
     </form>
-    <div id="control-buttons">
-      <button id="connect-btn">connect</button>
-      <button id="disconnect-btn" disabled>disconnect</button>
-    </div>
   </body>
   <script src="./index.js"></script>
 </html>
