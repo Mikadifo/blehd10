@@ -31,10 +31,33 @@
     <div id="custom-commands-container">
       <div id="custom-commands-navbar">
         <h2>Custom Commands:</h2>
-        <button>New</button>
+        <button id="new-command-btn">new</button>
+        <div id="custom-commands-form">
+          <form>
+            <h3>New Custom Command</h3>
+            <input
+              name="command-name"
+              type="text"
+              placeholder="Command name"
+              required
+            />
+            <input
+              name="command-value"
+              type="text"
+              placeholder="Command value"
+              required
+            />
+            <div id="custom-commands-form-buttons">
+              <button>Create</button>
+              <button type="button">Cancel</button>
+            </div>
+          </form>
+        </div>
       </div>
-      <div id="custom-commands"></div>
+      <div onclick="openCustomCommandForm()"></div>
     </div>
   </body>
+
   <script src="./index.js"></script>
+  <script src="./commands.js"></script>
 </html>

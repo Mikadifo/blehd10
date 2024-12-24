@@ -128,3 +128,34 @@ form > #clear-btn {
   background: #e1eae3;
   color: #0c2c23;
 }
+
+#custom-commands-form {
+  /*display: none;*/
+  position: fixed;
+  right: 2rem;
+  margin-top: 6rem;
+}
+
+#custom-commands-form > form {
+  display: block;
+  padding: 1rem;
+  background: #375249;
+  max-width: 300px;
+  border-radius: 4px;
+}
+
+#custom-commands-form > form > h3 {
+  text-align: center;
+  margin-bottom: 1rem;
+}
+
+#custom-commands-form > form > input {
+  margin-bottom: 0.5rem;
+}
+
+#custom-commands-form-buttons {
+  display: flex;
+  justify-content: center;
+  margin-top: 0.5rem;
+  gap: 1rem;
+}
