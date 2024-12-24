@@ -1,8 +1,8 @@
 # BLE HM-10 CONTROL PANEL
 
-This is a web app that allows you to establish a connection with a BLE(Bluetooth Low Energy) HM-10 module.
+This is a web tool that allows you to establish a connection with a BLE(Bluetooth Low Energy) HM-10 module.
 
-This app allows you to communicate with the hm-10 module independently of your hardware set up, such as an Arduino or Raspberry Pi.
+This tool allows you to communicate with the hm-10 module independently of your hardware set up, such as an Arduino or Raspberry Pi.
 
 ![image](https://github.com/user-attachments/assets/29f8e3a0-c392-49ae-a978-bf0d866a9eb5)
 
@@ -13,13 +13,13 @@ This app allows you to communicate with the hm-10 module independently of your h
 
 ## Disclaimer
 
-This app uses the Web Bluetooth API, which is not supported by all browsers. Some browsers have this feature disabled by default, so make sure to manually enable it.
+This tool uses the Web Bluetooth API, which is not supported by all browsers. Some browsers have this feature disabled by default, so make sure to manually enable it.
 
 Enabling the Web Bluetooth API, may be a security risk, so use it at your own risk.
 
 ## Licence
 
-BLE HM-10 CONTROL PANEL is a web app that allows communication wiht a BLE HM-10 module.
+BLE HM-10 CONTROL PANEL is a web tool that allows communication wiht a BLE HM-10 module.
 
 Copyright © 2024 Mikadifo
 
