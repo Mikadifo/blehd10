@@ -45,7 +45,7 @@ $connectBtn.addEventListener("click", async (evt) => {
     $connectBtn.setAttribute("disabled", true);
     $disconnectBtn.removeAttribute("disabled");
   } catch (error) {
-    addLog(error.message);
+    addLog(error.message, "error");
   }
 });
 
@@ -62,28 +62,32 @@ $disconnectBtn.addEventListener("click", (evt) => {
 $terminal.addEventListener("submit", async (evt) => {
   evt.preventDefault();
   if (device != null && device.gatt.connected) {
-    const $commandBtn = document.getElementById("command-btn");
+    const $sendButton = document.getElementById("send-btn");
+    const $commandInput = document.getElementById("command-input");
     const data = new FormData(evt.target);
     const command = data.get("command");
 
-    addLog(`Sending ${command}`);
-
+    addLog(`Sending ${command}`, "info");
     try {
       const encodedData = new TextEncoder().encode(command);
-      $commandBtn.setValue("Sending...");
+
+      $sendButton.innerHTML = "Sending...";
       await characteristic.writeValue(encodedData);
+      $commandInput.value = "";
+      addLog(command, "sent");
     } catch (error) {
-      addLog(error.message);
+      addLog(error.message, "error");
     } finally {
-      $commandBtn.setValue("Send");
+      $sendButton.innerHTML = "Send";
     }
   } else {
-    addLog("Device not connected");
+    addLog("Device not connected", "error");
   }
 });
 
-const addLog = (msg) => {
+const addLog = (msg, type = "info") => {
   const logMsg = document.createElement("p");
-  logMsg.innerText = msg;
+  logMsg.innerText = `${type}: ${msg}`;
+  logMsg.classList.add(`log-${type}`);
   $log.appendChild(logMsg);
 };

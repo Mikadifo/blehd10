@@ -24,13 +24,24 @@ button {
 }
 
 #log-container {
-  color: #b3d065;
   background: #23533a;
   margin: 2rem 0 0.5rem 0;
   padding: 18px;
   min-height: 256px;
   border: 1px solid transparent;
   border-radius: 5px;
+}
+
+.log-info {
+  color: #b3d065;
+}
+
+.log-error {
+  color: #e0a7a3;
+}
+
+.log-sent {
+  color: #e7fefe;
 }
 
 form {
