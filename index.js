@@ -7,8 +7,13 @@ let characteristic = null;
 
 let $connectBtn = document.getElementById("connect-btn");
 let $disconnectBtn = document.getElementById("disconnect-btn");
+let $clearBtn = document.getElementById("clear-btn");
 let $log = document.getElementById("log-container");
 let $terminal = document.getElementById("terminal");
+
+$clearBtn.addEventListener("click", (evt) => {
+  $log.innerHTML = "";
+});
 
 $connectBtn.addEventListener("click", async (evt) => {
   try {

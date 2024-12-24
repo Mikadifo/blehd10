@@ -53,10 +53,16 @@ form > input::placeholder {
   opacity: 0.4;
 }
 
-form > button {
+form > #send-btn {
   margin-left: 1rem;
   background: #f9f871;
   font-size: 18px;
+}
+
+form > #clear-btn {
+  background: #c7c0f8;
+  font-size: 18px;
+  margin-left: 1rem;
 }
 
 #control-buttons {
