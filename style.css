@@ -31,8 +31,14 @@ button {
   padding: 8px 16px;
   font-weight: bold;
   text-transform: uppercase;
+  font-size: 18px;
   border-radius: 4px;
   border: none;
+}
+
+button:not(:disabled):hover {
+  cursor: pointer;
+  opacity: 0.9;
 }
 
 #log-container {
@@ -79,18 +85,15 @@ form > input::placeholder {
 form > #send-btn {
   margin-left: 1rem;
   background: #f9f871;
-  font-size: 18px;
 }
 
 form > #clear-btn {
   background: #c7c0f8;
-  font-size: 18px;
   margin-left: 1rem;
 }
 
 #control-buttons > button {
   color: #e1eae3;
-  font-size: 18px;
   padding: 8px 16px;
 }
 
@@ -101,4 +104,27 @@ form > #clear-btn {
 
 #disconnect-btn {
   background: #7e0000;
+}
+
+#custom-commands-container {
+  margin: 2rem 0 1rem 0;
+}
+
+#custom-commands-navbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  color: #e1eae3;
+  width: 100%;
+}
+
+#custom-commands-navbar > button {
+  background: transparent;
+  color: #e1eae3;
+  border: 1px solid #e1eae3;
+}
+
+#custom-commands-navbar > button:hover {
+  background: #e1eae3;
+  color: #0c2c23;
 }
