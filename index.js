@@ -71,6 +71,10 @@ $terminal.addEventListener("submit", async (evt) => {
     try {
       const encodedData = new TextEncoder().encode(command);
 
+      if (encodedData.byteLength >= 20) {
+        throw new Error("Message exceeds BLE write limit of 20 bytes");
+      }
+
       $sendButton.innerHTML = "Sending...";
       await characteristic.writeValue(encodedData);
       $commandInput.value = "";
