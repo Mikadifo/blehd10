@@ -3,19 +3,22 @@
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width" />
+    <link rel="stylesheet" href="style.css" type="text/css" media="all" />
     <title>BLE HD-10</title>
   </head>
   <body>
     <h1>BLE HD-10 Terminal</h1>
-    <div>
-      <p id="log" />
+    <div id="log-container">
+      <p>Waiting for a message...</p>
     </div>
     <form id="terminal">
-      <input type="text" name="command" />
+      <input type="text" name="command" placeholder="Enter a message..." />
       <button>send</button>
     </form>
-    <button id="connect-btn">connect</button>
-    <button id="disconnect-btn">disconnect</button>
+    <div id="control-buttons">
+      <button id="connect-btn">connect</button>
+      <button id="disconnect-btn" disabled>disconnect</button>
+    </div>
   </body>
   <script src="./index.js"></script>
 </html>
