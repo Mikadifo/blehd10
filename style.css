@@ -36,7 +36,6 @@ button {
 form {
   display: flex;
   width: 100%;
-  margin-bottom: 2rem;
 }
 
 form > input {
@@ -64,6 +63,7 @@ form > button {
   display: flex;
   gap: 2rem;
   justify-content: center;
+  margin-top: 2rem;
 }
 
 #connect-btn {

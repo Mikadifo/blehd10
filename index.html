@@ -7,13 +7,18 @@
     <title>BLE HD-10</title>
   </head>
   <body>
-    <h1>BLE HD-10 Terminal</h1>
+    <h1>BLE HD-10 CONTROL PANEL</h1>
     <div id="log-container">
-      <p>Waiting for a message...</p>
+      <p>Messages and logs will appear here</p>
     </div>
     <form id="terminal">
-      <input type="text" name="command" placeholder="Enter a message..." />
-      <button>send</button>
+      <input
+        type="text"
+        name="command"
+        placeholder="Enter a message..."
+        required
+      />
+      <button id="send-btn">send</button>
     </form>
     <div id="control-buttons">
       <button id="connect-btn">connect</button>
