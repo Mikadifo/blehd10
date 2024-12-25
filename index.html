@@ -10,14 +10,16 @@
     <div id="navbar">
       <h1>BLE HM-10 CONTROL PANEL</h1>
       <div id="control-buttons">
-        <button id="connect-btn">connect</button>
-        <button id="disconnect-btn" disabled>disconnect</button>
+        <button id="connect-btn" onclick="connect()">connect</button>
+        <button id="disconnect-btn" onclick="disconnect()" disabled>
+          disconnect
+        </button>
       </div>
     </div>
     <div id="log-container">
       <p class="log-info">Messages and logs will appear here</p>
     </div>
-    <form id="terminal">
+    <form id="terminal" onsubmit="submitMessage(event)">
       <input
         id="command-input"
         type="text"
@@ -68,5 +70,6 @@
 
   <script type="module" src="./index.js"></script>
   <script type="module" src="./commands.js"></script>
+  <script type="module" src="./bleHandler.js"></script>
   <script type="module" src="./utils.js"></script>
 </html>

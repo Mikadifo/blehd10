@@ -1,4 +1,4 @@
-import { sendMessage } from "./utils.js";
+import { sendMessage } from "./bleHandler.js";
 
 const commands = [{ name: "Hello World", value: "Hello World!" }];
 
@@ -49,3 +49,7 @@ const loadCommands = () => {
 };
 
 loadCommands();
+
+window.openCustomCommandForm = openCustomCommandForm;
+window.closeCustomCommandForm = closeCustomCommandForm;
+window.createCustomCommand = createCustomCommand;
