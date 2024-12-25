@@ -4,7 +4,7 @@ This is a web tool that allows you to establish a connection with a BLE(Bluetoot
 
 This tool allows you to communicate with the hm-10 module independently of your hardware set up, such as an Arduino or Raspberry Pi.
 
-![image](https://github.com/user-attachments/assets/29f8e3a0-c392-49ae-a978-bf0d866a9eb5)
+![image](https://github.com/user-attachments/assets/e22bd2e8-9695-44ba-94a6-7fce03bf5e70)
 
 ## Features
 
