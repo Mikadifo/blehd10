@@ -44,8 +44,10 @@ button:not(:disabled):hover {
 #log-container {
   background: #23533a;
   margin: 2rem 0 0.5rem 0;
-  padding: 18px;
-  min-height: 256px;
+  padding: 18px 18px 24px 18px;
+  overflow-y: auto;
+  min-height: 400px;
+  max-height: 400px;
   border: 1px solid transparent;
   border-radius: 5px;
 }

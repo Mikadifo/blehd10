@@ -79,6 +79,7 @@ export const addLog = (msg, type = "info") => {
   logMsg.innerText = `${type}: ${msg}`;
   logMsg.classList.add(`log-${type}`);
   $log.appendChild(logMsg);
+  $log.scrollTop = $log.scrollHeight;
 };
 
 window.connect = connect;
