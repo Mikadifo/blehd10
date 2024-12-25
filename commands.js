@@ -1,6 +1,6 @@
-import { sendMessage } from "./bleHandler.js";
+import { sendMessage, addLog } from "./bleHandler.js";
 
-const commands = [{ name: "Hello World", value: "Hello World!" }];
+let commands = JSON.parse(localStorage.getItem("commands")) || [];
 
 const $customCommands = document.getElementById("custom-commands");
 
@@ -9,7 +9,9 @@ const openCustomCommandForm = () => {
 };
 
 const closeCustomCommandForm = () => {
-  document.getElementById("custom-commands-form").style.display = "none";
+  const $customCommandsForm = document.getElementById("custom-commands-form");
+  $customCommandsForm.style.display = "none";
+  $customCommandsForm.getElementsByTagName("form")[0].reset(0);
 };
 
 const createCustomCommand = (evt) => {
@@ -18,34 +20,59 @@ const createCustomCommand = (evt) => {
   const commandName = data.get("command-name");
   const commandValue = data.get("command-value");
 
+  const commandFound = commands.filter(
+    (command) => command.name === commandName
+  )[0];
+
   if (commandFound) {
     addLog(`${commandName} already exists`, "error");
     return;
   }
 
-  if (new TextEncoder().encode(commandValue).byteLength >= 20) {
-    addLog("Command exceeds BLE write limit of 20 bytes", "error");
-    return;
-  }
-
-  const commandFound = commands.filter(
-    (command) => command.name === commandName
-  )[0];
-
   commands.push({ name: commandName, value: commandValue });
+  localStorage.setItem("commands", JSON.stringify(commands));
   addLog(`${commandName} created`, "info");
+  evt.target.reset(0);
+  closeCustomCommandForm();
+  loadCommands();
 };
 
 const loadCommands = () => {
-  const commandCards = commands.map((command) => {
+  $customCommands.innerHTML = "";
+
+  commands.forEach((command) => {
+    const commandCard = document.createElement("div");
     const commandButton = document.createElement("button");
-    commandButton.innerText = command.name;
-    commandButton.classList.add("command-card");
+    const deleteButton = document.createElement("button");
+
+    deleteButton.innerHTML = "X";
+    deleteButton.classList.add("delete-command-button");
+    commandButton.classList.add("execute-command-button");
+    commandButton.innerHTML = command.name;
+
+    commandCard.appendChild(commandButton);
+    commandCard.appendChild(deleteButton);
+    commandCard.classList.add("command-card");
+
     commandButton.onclick = () => {
       sendMessage(command.value);
     };
+
+    deleteButton.onclick = () => {
+      const confirmed = confirm(
+        `Are you sure you want to delete this command? (${command.name})`
+      );
+
+      if (confirmed) {
+        commands = commands.filter((c) => c.name !== command.name);
+        localStorage.setItem("commands", JSON.stringify(commands));
+        addLog(`${command.name} deleted`);
+        loadCommands();
+      }
+    };
+
+    $customCommands.appendChild(commandCard);
   });
-  $customCommands.innerHTML = commandCards.join("");
 };
 
 loadCommands();

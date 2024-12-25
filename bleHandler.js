@@ -1,5 +1,6 @@
 const BLE_UUID = 0xffe0;
 const CHAR_UUID = 0xffe1;
+const CHUNK_SIZE = 20;
 
 let device = null;
 let characteristic = null;
@@ -19,6 +20,7 @@ export const connect = async () => {
     addLog(`connecting to ${device.name}`);
     const server = await device.gatt.connect();
     addLog("connected");
+    sessionStorage.setItem("device", device);
 
     addLog("getting primary service");
     const service = await server.getPrimaryService(BLE_UUID);
@@ -26,6 +28,7 @@ export const connect = async () => {
 
     addLog("getting characteristic");
     characteristic = await service.getCharacteristic(CHAR_UUID);
+    sessionStorage.setItem("characteristic", characteristic);
 
     addLog("starting notifications");
     await characteristic.startNotifications();
@@ -33,9 +36,6 @@ export const connect = async () => {
       const value = new TextDecoder().decode(event.target.value);
       addLog(`Received: ${value}`);
     });
-
-    sessionStorage.setItem("device", device);
-    sessionStorage.setItem("characteristic", characteristic);
 
     addLog("Ready to send data.");
     $connectBtn.setAttribute("disabled", true);
@@ -62,13 +62,12 @@ export const sendMessage = async (message) => {
 
   try {
     addLog(`Sending ${message}`);
-    const encodedData = new TextEncoder().encode(message);
+    const chunks = message.match(new RegExp(`.{1,${CHUNK_SIZE}}`, "g"));
 
-    if (encodedData.byteLength >= 20) {
-      throw new Error("Message exceeds BLE write limit of 20 bytes");
+    for (let chunk of chunks) {
+      const encodedData = new TextEncoder().encode(chunk);
+      await characteristic.writeValue(encodedData);
     }
-
-    await characteristic.writeValue(encodedData);
     addLog(message, "sent");
   } catch (error) {
     addLog(error.message, "error");

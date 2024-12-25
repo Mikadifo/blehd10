@@ -178,8 +178,20 @@ form > #clear-btn {
 }
 
 .command-card {
-  background: #375249;
-  padding: 1rem;
-  border-radius: 4px;
+  display: flex;
   color: #e1eae3;
+  border-radius: 4px;
+}
+
+.delete-command-button {
+  background: #7e0000;
+  color: #e1eae3;
+  border-radius: 0 4px 4px 0;
+}
+
+.execute-command-button {
+  background: #375249;
+  color: #e1eae3;
+  border-radius: 4px 0 0 4px;
+  text-transform: none;
 }
