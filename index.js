@@ -1,3 +1,5 @@
+import { addLog, sendMessage } from "./utils.js";
+
 const BLE_UUID = 0xffe0;
 const CHAR_UUID = 0xffe1;
 
@@ -62,36 +64,12 @@ $disconnectBtn.addEventListener("click", (evt) => {
 $terminal.addEventListener("submit", async (evt) => {
   evt.preventDefault();
   if (device != null && device.gatt.connected) {
-    const $sendButton = document.getElementById("send-btn");
-    const $commandInput = document.getElementById("command-input");
     const data = new FormData(evt.target);
     const command = data.get("command");
 
     addLog(`Sending ${command}`, "info");
-    try {
-      const encodedData = new TextEncoder().encode(command);
-
-      if (encodedData.byteLength >= 20) {
-        throw new Error("Message exceeds BLE write limit of 20 bytes");
-      }
-
-      $sendButton.innerHTML = "Sending...";
-      await characteristic.writeValue(encodedData);
-      $commandInput.value = "";
-      addLog(command, "sent");
-    } catch (error) {
-      addLog(error.message, "error");
-    } finally {
-      $sendButton.innerHTML = "Send";
-    }
+    sendMessage(command);
   } else {
     addLog("Device not connected", "error");
   }
 });
-
-const addLog = (msg, type = "info") => {
-  const logMsg = document.createElement("p");
-  logMsg.innerText = `${type}: ${msg}`;
-  logMsg.classList.add(`log-${type}`);
-  $log.appendChild(logMsg);
-};

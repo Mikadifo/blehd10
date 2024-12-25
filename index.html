@@ -31,9 +31,11 @@
     <div id="custom-commands-container">
       <div id="custom-commands-navbar">
         <h2>Custom Commands:</h2>
-        <button id="new-command-btn">new</button>
+        <button id="new-command-btn" onclick="openCustomCommandForm()">
+          new
+        </button>
         <div id="custom-commands-form">
-          <form>
+          <form onsubmit="createCustomCommand(event)">
             <h3>New Custom Command</h3>
             <input
               name="command-name"
@@ -49,15 +51,22 @@
             />
             <div id="custom-commands-form-buttons">
               <button>Create</button>
-              <button type="button">Cancel</button>
+              <button
+                type="button"
+                id="cancel-custom-command"
+                onclick="closeCustomCommandForm()"
+              >
+                Cancel
+              </button>
             </div>
           </form>
         </div>
       </div>
-      <div onclick="openCustomCommandForm()"></div>
+      <div id="custom-commands"></div>
     </div>
   </body>
 
-  <script src="./index.js"></script>
-  <script src="./commands.js"></script>
+  <script type="module" src="./index.js"></script>
+  <script type="module" src="./commands.js"></script>
+  <script type="module" src="./utils.js"></script>
 </html>

@@ -38,7 +38,7 @@ button {
 
 button:not(:disabled):hover {
   cursor: pointer;
-  opacity: 0.9;
+  opacity: 0.8;
 }
 
 #log-container {
@@ -130,7 +130,7 @@ form > #clear-btn {
 }
 
 #custom-commands-form {
-  /*display: none;*/
+  display: none;
   position: fixed;
   right: 2rem;
   margin-top: 6rem;
@@ -138,6 +138,7 @@ form > #clear-btn {
 
 #custom-commands-form > form {
   display: block;
+  box-sizing: border-box;
   padding: 1rem;
   background: #375249;
   max-width: 300px;
@@ -151,6 +152,7 @@ form > #clear-btn {
 
 #custom-commands-form > form > input {
   margin-bottom: 0.5rem;
+  box-sizing: border-box;
 }
 
 #custom-commands-form-buttons {
@@ -158,4 +160,26 @@ form > #clear-btn {
   justify-content: center;
   margin-top: 0.5rem;
   gap: 1rem;
+}
+
+#custom-commands-form-buttons > button {
+  font-size: 16px;
+  background: #1a3baa;
+  color: #e1eae3;
+}
+
+#cancel-custom-command {
+  background: #7e0000 !important;
+}
+
+#custom-commands {
+  display: flex;
+  gap: 2rem;
+}
+
+.command-card {
+  background: #375249;
+  padding: 1rem;
+  border-radius: 4px;
+  color: #e1eae3;
 }
