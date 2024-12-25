@@ -1,7 +1,8 @@
-import { getDevice } from "./utils.js";
-
 const BLE_UUID = 0xffe0;
 const CHAR_UUID = 0xffe1;
+
+let device = null;
+let characteristic = null;
 
 const $log = document.getElementById("log-container");
 const $connectBtn = document.getElementById("connect-btn");
@@ -11,7 +12,7 @@ export const connect = async () => {
   try {
     addLog("Searching devices...");
 
-    const device = await navigator.bluetooth.requestDevice({
+    device = await navigator.bluetooth.requestDevice({
       filters: [{ services: [BLE_UUID] }],
     });
 
@@ -24,7 +25,7 @@ export const connect = async () => {
     addLog("starting notifications");
 
     addLog("getting characteristic");
-    const characteristic = await service.getCharacteristic(CHAR_UUID);
+    characteristic = await service.getCharacteristic(CHAR_UUID);
 
     addLog("starting notifications");
     await characteristic.startNotifications();
@@ -32,6 +33,9 @@ export const connect = async () => {
       const value = new TextDecoder().decode(event.target.value);
       addLog(`Received: ${value}`);
     });
+
+    sessionStorage.setItem("device", device);
+    sessionStorage.setItem("characteristic", characteristic);
 
     addLog("Ready to send data.");
     $connectBtn.setAttribute("disabled", true);
@@ -41,7 +45,6 @@ export const connect = async () => {
   }
 };
 export const disconnect = async () => {
-  const device = getDevice();
   if (device != null && device.gatt.connected) {
     addLog("disconnecting...");
     device.gatt.disconnect();
@@ -52,18 +55,13 @@ export const disconnect = async () => {
 };
 
 export const sendMessage = async (message) => {
-  const device = getDevice();
-
   if (device == null || !device.gatt.connected) {
     addLog("Device not connected", "error");
     return;
   }
 
-  const $sendButton = document.getElementById("send-btn");
-  const $commandInput = document.getElementById("command-input");
-
   try {
-    addLog(`Sending ${command}`, "info");
+    addLog(`Sending ${message}`);
     const encodedData = new TextEncoder().encode(message);
 
     if (encodedData.byteLength >= 20) {
@@ -71,12 +69,9 @@ export const sendMessage = async (message) => {
     }
 
     await characteristic.writeValue(encodedData);
-    $commandInput.value = "";
-    addLog(command, "sent");
+    addLog(message, "sent");
   } catch (error) {
     addLog(error.message, "error");
-  } finally {
-    $sendButton.innerHTML = "Send";
   }
 };
 
