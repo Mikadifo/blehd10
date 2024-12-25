@@ -6,6 +6,8 @@ This tool allows you to communicate with the hm-10 module independently of your 
 
 ![image](https://github.com/user-attachments/assets/e22bd2e8-9695-44ba-94a6-7fce03bf5e70)
 
+https://github.com/user-attachments/assets/bf41883d-09df-4091-921d-2b17d4b13cc8
+
 ## Features
 
 - Send and receive data from the module.
